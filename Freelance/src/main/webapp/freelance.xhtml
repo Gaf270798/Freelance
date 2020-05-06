@@ -1,0 +1,78 @@
+!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Freelancer:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Freelancers</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+
+
+			<h:outputLabel for="id" value="Código" styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				value="#{freelanceController.f.id}" required="true" />
+			
+			<h:outputLabel for="nombre" value="Freelancer "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="name" styleClass="form-control"
+				value="#{freelanceController.f.nombre}" maxlength="30"
+				required="true" />
+			
+			<h:outputLabel for="id" value="cumplimiento" styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="cumplimiento" styleClass="form-control"
+				value="#{freelanceController.f.cumplimiento}" required="true" />
+			
+			<h:outputLabel for="correo" value="correo electronico "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="mail" styleClass="form-control"
+				value="#{freelanceController.f.correo}" maxlength="50"
+				required="true" />
+			
+			<h:outputLabel for="dsc" value="dsc "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="dsc" styleClass="form-control"
+				value="#{freelanceController.f.dsc}" maxlength="30"
+				required="true" />
+			
+			
+			
+			
+			
+
+
+			<p:commandButton value="Grabar"
+				actionListener="#{freelanceController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="" />
+			<p:commandButton value="Cancelar"
+				action="#{freelanceController.listaFreelance}" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

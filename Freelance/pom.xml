@@ -2,14 +2,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pe-edu.upc</groupId>
+	<groupId>pe.edu.upc</groupId>
 	<artifactId>Freelance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Freelance</name>
 	<description>Freelance</description>
 	<build>
-		<finalName>Nombredelproyecto</finalName>
+		<finalName>Freelance</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -22,7 +22,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
 		<dependency>
@@ -38,7 +37,6 @@
 			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -55,9 +53,6 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.12</version>
 		</dependency>
-
-
-
 	</dependencies>
 </project>
   

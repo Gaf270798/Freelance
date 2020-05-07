@@ -29,7 +29,7 @@ public class Freelance implements Serializable{
 		super();
 		
 	}
-
+//comentario
 	public Freelance(int id, String nombre, int cumplimiento, String correo, String dsc) {
 		super();
 		this.id = id;

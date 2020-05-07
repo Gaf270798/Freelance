@@ -53,7 +53,8 @@
 							class="icon-home"></i> Inicio</a></li>
 					<li id="sidebar-2"><a href="listInfectiousAgent.xhtml"><i
 							class="icon-user"></i> Freelance</a></li>
-
+					<li id="sidebar-3"><a href="login.xhtml"><i
+							class="icon-user"></i> Login</a></li>
 
 				</ul>
 			</div>
@@ -72,6 +73,13 @@
 		</div>
 		<!--/row-->
 	</div>
+	<h:form>
+		<div class="row" align="center"
+			style="margin-top: 15px; margin-bottom: 15px;">
+			<p:commandButton value="Nada" action="master?faces-redirect=true"
+				styleClass="btn btn-primary" ajax="false" />
+		</div>
+	</h:form>
 	<!--/container-->
 	<ui:insert name="footerCont"></ui:insert>
 </h:body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body>
+	<h:form id="frm">
+		<div align="center">
+			<p:growl id="men" />
+			
+			<center style="margin-top: 70px">
+				<h:graphicImage value="/resources/img/logo.png" height="20%"
+					width="20%"></h:graphicImage>
+				<br />
+			</center>
+			
+			<h:panelGrid columns="2">
+
+				<p:outputLabel for="txtUsername" value="Usuario:" />
+				<h:inputText id="txtUsername"
+					value="#{loginController.user.username}" styleClass="form-control" />
+					
+				<p:outputLabel for="txtPassword" value="Contraseña:" />
+				<h:inputSecret id="txtPassword"
+					value="#{loginController.user.password}" styleClass="form-control" />
+			</h:panelGrid>
+			
+			<p:commandButton value="Login"
+				action="#{loginController.authentication()}" update=":frm"
+				styleClass="btn btn-primary" />
+
+			<p:commandButton value="Registrarse"
+				action= "register?faces-redirect=true" immediate="true"
+				styleClass="btn btn-primary" />
+		</div>
+	</h:form>
+</body>
+</html>

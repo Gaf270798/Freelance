@@ -22,7 +22,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
 		<dependency>
@@ -38,7 +37,6 @@
 			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -55,9 +53,6 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.12</version>
 		</dependency>
-
-
-
 	</dependencies>
 </project>
   

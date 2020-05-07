@@ -40,6 +40,7 @@ public class FreelanceController implements Serializable {
 	
 	public void insert() {
 		try {
+			
 			iservice.insert(f);
 			cleanFreelance();
 			this.listFreelance();

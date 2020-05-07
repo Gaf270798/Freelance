@@ -25,6 +25,7 @@ public class FreelanceDaoImpl implements IfreelanceDao, Serializable {
 		try {
 			em.persist(f);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			System.out.println("Error insert DAOImpl");
 		}		
 	}

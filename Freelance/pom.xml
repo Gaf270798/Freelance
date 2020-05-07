@@ -9,7 +9,7 @@
 	<name>Freelance</name>
 	<description>Freelance</description>
 	<build>
-		<finalName>Nombredelproyecto</finalName>
+		<finalName>Freelance</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

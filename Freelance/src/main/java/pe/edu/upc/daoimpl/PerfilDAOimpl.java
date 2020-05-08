@@ -18,7 +18,7 @@ import pe.edu.upc.entity.Perfil;
 public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext(unitName = "Freelance")
+	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 
 	@Override

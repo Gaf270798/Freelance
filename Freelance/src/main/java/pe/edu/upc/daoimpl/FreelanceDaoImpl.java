@@ -13,7 +13,7 @@ import pe.edu.upc.entity.Freelance;
 public class FreelanceDaoImpl implements IfreelanceDao, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext(unitName = "Freelance")
+	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 	
 	@Override

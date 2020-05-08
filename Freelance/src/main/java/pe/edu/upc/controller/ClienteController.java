@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import pe.edu.upc.entity.Cliente;
 import pe.edu.upc.serviceinterface.IclienteService;
 
+@Named
+@RequestScoped
 public class ClienteController implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,8 +22,8 @@ public class ClienteController implements Serializable {
     private IclienteService iService;
 
     private Cliente i;
+    
     List<Cliente> listaCliente;
-
     //inicializacion
     @PostConstruct
     public void init(){

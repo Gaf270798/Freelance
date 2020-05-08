@@ -15,9 +15,6 @@ import pe.edu.upc.serviceinterface.IfreelanceService;
 @RequestScoped
 public class FreelanceServiceImpl implements IfreelanceService, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private IfreelanceDao iD;

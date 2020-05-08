@@ -7,6 +7,7 @@
 		transaction-type="JTA">
 		<jta-data-source>java:/freelanceDS</jta-data-source>
 		<class>pe.edu.upc.entity.Freelance</class>
+		<class>pe.edu.upc.entity.Cliente</class>
 		<class>pe.edu.upc.entity.Usuario</class>
 		<class>pe.edu.upc.entity.Perfil</class>
 		<class>pe.edu.upc.entity.Rol</class>
@@ -14,7 +15,7 @@
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"
-				value="create" />
+				value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -22,34 +22,39 @@
 				<div class="col-sm-12">
 					<div class="form-group table-responsive box-table-class">
 						<p:dataTable id="lstInfectious" var="inf"
-							value="#{infectiousAgentController.listaInfectiousAgent}"
-							paginator="true" paginatorPosition="top"
-							rowsPerPageTemplate="10,20,30,40,50" rows="10"
-							styleClass="table table-bordered"
+							value="#{freelanceController.listaFreelance}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
 							emptyMessage="No existen registros" rowIndexVar="item"
 							style="margin-bottom:0">
 
-							<p:column headerText="Id" sortBy="#{inf.idInfectiousAgents}">
-								<h:outputText value="#{inf.idInfectiousAgents}" />
+							<p:column headerText="Id" sortBy="#{inf.id}">
+								<h:outputText value="#{inf.id}" />
 							</p:column>
 
-							<p:column headerText="Agente Infeccioso"
-								sortBy="#{inf.descriptionInfectiousAgents}">
-								<h:outputText value="#{inf.descriptionInfectiousAgents}" />
+							<p:column headerText="Nombre" sortBy="#{inf.dsc}">
+								<h:outputText value="#{inf.nombre}" />
 							</p:column>
-							<p:column headerText="Tipo" sortBy="#{inf.typeInfectiousAgents}">
-								<h:outputText value="#{inf.typeInfectiousAgents}" />
+							<p:column headerText="Descripción" sortBy="#{inf.dsc}">
+								<h:outputText value="#{inf.dsc}" />
 							</p:column>
-							<p:column headerText="Tiempo de vida"
-								sortBy="#{inf.timeOfLifeInfectiousAgents}">
-								<h:outputText value="#{inf.timeOfLifeInfectiousAgents}" />
+							<p:column headerText="Correo" sortBy="#{inf.correo}">
+								<h:outputText value="#{inf.correo}" />
 							</p:column>
-							<p:column headerText="Fecha de Aparición "
-								sortBy="#{inf.appearanceDateInfectiousAgents}">
-								<h:outputText value="#{inf.appearanceDateInfectiousAgents}">
-									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
-								</h:outputText>
+							<p:column headerText="Cumplimiento" sortBy="#{inf.cumplimiento}">
+								<h:outputText value="#{inf.cumplimiento}" />
 							</p:column>
+
+							<p:column headerText="Operación">
+								<h:commandLink action="LstFreelance" value="Eliminar"
+									actionListener="#{freelanceController.delete(inf.id)}"
+									style="color:red" />
+									
+								<br />
+								<h:commandLink action="#{freelanceController.modFreelance(inf)}"
+									value="Modificar" style="color:blue" />
+							</p:column>
+
 						</p:dataTable>
 					</div>
 				</div>

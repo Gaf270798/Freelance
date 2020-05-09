@@ -23,13 +23,12 @@
 		<div align="center">
 
 			<f:facet name="header">Registrar Usuario</f:facet>
-			<h:panelGrid id="pg" columns="4">
+			<h:panelGrid id="pg" columns="2">
 				<p:outputLabel for="txtName" value="Nombres" />
 				<p:inputText id="txtName"
 					value="#{registerController.customer.name}" required="true"
 					styleClass="form-control" />
 				<h:column />
-				<br />
 
 				<p:outputLabel for="txtAddress" value="Dirección" />
 				<p:inputText id="txtAddress"

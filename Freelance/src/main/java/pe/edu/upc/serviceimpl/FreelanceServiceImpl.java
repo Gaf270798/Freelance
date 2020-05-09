@@ -24,15 +24,24 @@ public class FreelanceServiceImpl implements IfreelanceService, Serializable {
 			iD.insertar(f);
 		} catch (Exception e) {
 			System.out.println("Error en el service al insertar un freelance");
-		}
-		
-		
+		}	
 	}
 
 	@Override
 	public List<Freelance> list() {
-
 		return iD.listar();
+	}
+
+	@Override
+	public void delete(int f) {
+		iD.delete(f);
+		
+	}
+
+	@Override
+	public void modify(Freelance f) {
+		iD.modify(f);
+		
 	}
 
 }

@@ -35,7 +35,6 @@ public class FreelanceController implements Serializable {
 		this.setF(new Freelance());
 		return "freelance.xhtml";
 	}
-
 	
 	public void insert() {
 		try {
@@ -60,6 +59,24 @@ public class FreelanceController implements Serializable {
 	public void cleanFreelance() {
 		this.init();
 	}
+	
+	public void delete(int df) {
+		System.out.println(String.valueOf(df));
+		iservice.delete(df);
+		this.listFreelance();
+	}
+	
+	public String modFreelance(Freelance fa) {
+		this.setF(fa);
+		return "FreelanceUpdate.xhtml";
+	}
+	
+	public void modify() {
+		iservice.modify(f);
+		cleanFreelance();
+		listFreelance();
+	}
+	
 	public IfreelanceService getIservice() {
 		return iservice;
 	}

@@ -12,7 +12,6 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
 	<link
 		href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Ubuntu+Condensed'
 		rel='stylesheet' type='text/css' />
@@ -51,10 +50,13 @@
 				<ul class="nav nav-stacked" id="sidebar">
 					<li id="sidebar-1"><a href="panel.xhtml"><i
 							class="icon-home"></i> Inicio</a></li>
-					<li id="sidebar-2"><a href="listInfectiousAgent.xhtml"><i
+					<li id="sidebar-2"><a href="listFreelance.xhtml"><i
 							class="icon-user"></i> Freelance</a></li>
 					<li id="sidebar-3"><a href="login.xhtml"><i
 							class="icon-user"></i> Login</a></li>
+					<li id="sidebar-4"><p:link value="Cerrar Sesión"
+							actionListener="#{masterController.cerrarSesion()}"
+							href="login.xhtml" /></li>
 
 				</ul>
 			</div>

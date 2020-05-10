@@ -19,33 +19,28 @@
 	<ui:define name="content">
 		<h:form>
 			<h:outputLabel for="id" value="Código" styleClass="control-label" />
-
 			<p:inputText autocomplete="off" id="id" styleClass="form-control"
 				value="#{freelanceController.f.id}" required="true" />
 
-			<h:outputLabel for="nombre" value="Freelancer "
+			<h:outputLabel for="nombre" value="Nombre: "
 				styleClass="control-label" />
-
 			<p:inputText autocomplete="off" id="name" styleClass="form-control"
 				value="#{freelanceController.f.nombre}" maxlength="30"
 				required="true" />
 
-			<h:outputLabel for="id" value="cumplimiento"
+			<h:outputLabel for="id" value="Cumplimiento: "
 				styleClass="control-label" />
-
 			<p:inputText autocomplete="off" id="cumplimiento"
 				styleClass="form-control"
 				value="#{freelanceController.f.cumplimiento}" required="true" />
 
-			<h:outputLabel for="correo" value="correo electronico "
+			<h:outputLabel for="correo" value="Correo electronico: "
 				styleClass="control-label" />
-
 			<p:inputText autocomplete="off" id="mail" styleClass="form-control"
 				value="#{freelanceController.f.correo}" maxlength="50"
 				required="true" />
 
-			<h:outputLabel for="dsc" value="dsc " styleClass="control-label" />
-
+			<h:outputLabel for="dsc" value="Descripción: " styleClass="control-label" />
 			<p:inputText autocomplete="off" id="dsc" styleClass="form-control"
 				value="#{freelanceController.f.dsc}" maxlength="30" required="true" />
 
@@ -53,18 +48,17 @@
 			<p:commandButton value="Grabar"
 				actionListener="#{freelanceController.insert()}"
 				styleClass="btn btn-primary " update="@form"
-				action="listFreelance?faces-redirect=true" />
+				action="lstfreelance?faces-redirect=true" />
 
 			<p:commandButton value="Cancelar"
 				action="listFreelance?faces-redirect=true" immediate="true"
 				styleClass="btn btn-default" ajax="false" />
-
-			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
+				
+			<p:growl id="growl" sticky="false" showDetail="false" life="1500" />
 		</h:form>
 	</ui:define>
 
-	<ui:define name="footerCont">
+	<ui:define name="footerCont">	
 
 	</ui:define>
 </ui:composition>

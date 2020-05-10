@@ -25,6 +25,7 @@ public class FreelanceController implements Serializable {
 
 	List<Freelance>listaFreelance;
 
+	//AHORA REGRESO, DISCULPE 10 sec
 	@PostConstruct
 	public void init() {
 		this.listaFreelance = new ArrayList<Freelance>();
@@ -54,7 +55,6 @@ public class FreelanceController implements Serializable {
 			e.getMessage();
 		}
 	}
-
 
 	public void cleanFreelance() {
 		this.init();

@@ -22,31 +22,36 @@ public class LoginController implements Serializable {
 	private UsuarioServiceImpl uS;
 
 	private Usuario user;
-
+	private String ErrorAsociado;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("login init");
 		this.user = new Usuario();
+		this.ErrorAsociado = "";
 	}
 
 	public String authentication() {
 		String redirect = null;
 
 		try {
+			System.out.println("1");
 			Optional<Usuario> userFound = this.uS.authentication(user);
-
+			System.out.println("2");
+			
 			if (userFound.isPresent() && userFound.get().getState().equalsIgnoreCase("A")) {
+				ErrorAsociado = "";
 				// Almacenar en la sesión de JSF
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userFound.get());
 				redirect = "/panel?faces-redirect=true";
 			} else {
-				System.out.println("usuario no existente o credenciales erroneas");
+				ErrorAsociado = "Contraseña incorrecta";
 				FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales incorrectas"));
 			}
 		} catch (Exception e) {
+			ErrorAsociado = "Usuario no existente";
 			System.out.println("failed to login");
-			//e.printStackTrace();
 		}
 
 		return redirect;
@@ -60,4 +65,11 @@ public class LoginController implements Serializable {
 		this.user = user;
 	}
 
+	public String getErrorAsociado() {
+		return ErrorAsociado;
+	}
+
+	public void setErrorAsociado(String errorAsociado) {
+		ErrorAsociado = errorAsociado;
+	}
 }

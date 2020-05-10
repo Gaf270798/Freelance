@@ -49,10 +49,13 @@
 								<h:commandLink action="LstFreelance" value="Eliminar"
 									actionListener="#{freelanceController.delete(inf.id)}"
 									style="color:red" />
-									
+
 								<br />
 								<h:commandLink action="#{freelanceController.modFreelance(inf)}"
 									value="Modificar" style="color:blue" />
+								<br />
+								<h:commandLink action="null"
+									value="Services" style="color:green" />
 							</p:column>
 
 						</p:dataTable>

@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.swing.JOptionPane;
+
 import javax.transaction.Transactional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -56,14 +58,19 @@ public class UsuarioServiceImpl implements IUsuarioService, Serializable {
 	public Optional<Usuario> authentication(Usuario us) throws Exception {
 		String password = us.getPassword();
 
+		System.out.println("1.1");
 		String passwordHash = uD.getPassworHashedByUserName(us.getUsername());
 
 		if (BCrypt.checkpw(password, passwordHash)) {
 			us.setPassword(passwordHash);
+			System.out.println("1.2.Exit");
 			return uD.findUserByUsername(us);
 		}
-
-		return Optional.of(new Usuario());
+		
+		System.out.println("1.2.Failed");
+		Usuario failed = new Usuario();
+		failed.setState("F");
+		return Optional.of(failed);
 	}
 
 }

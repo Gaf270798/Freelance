@@ -9,7 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.entity.PerfilCliente;
 import pe.edu.upc.serviceinterface.IclienteService;
 
 @Named
@@ -17,7 +17,7 @@ import pe.edu.upc.serviceinterface.IclienteService;
 public class ClienteController implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+/*
     @Inject
     private IclienteService iService;
 
@@ -70,5 +70,5 @@ public class ClienteController implements Serializable {
         this.listaCliente = listaCliente;
     }
 
-    
+*/    
 }

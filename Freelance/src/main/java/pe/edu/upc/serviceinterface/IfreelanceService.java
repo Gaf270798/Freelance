@@ -2,14 +2,14 @@ package pe.edu.upc.serviceinterface;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Freelance;
+import pe.edu.upc.entity.PerfilFreelance;
 
 public interface IfreelanceService {
-	public void insert(Freelance f);
+	public void insert(PerfilFreelance f);
 
-	public List<Freelance> list();
+	public List<PerfilFreelance> list();
 	
 	public void delete(int f);
 	
-	public void modify(Freelance f);
+	public void modify(PerfilFreelance f);
 }

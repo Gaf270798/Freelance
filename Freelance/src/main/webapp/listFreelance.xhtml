@@ -13,49 +13,37 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<div class="row" align="center">
-				<p:commandButton value="Nuevo"
-					action="#{freelanceController.newFreelance()}"
-					styleClass="btn btn-primary" ajax="false" />
-			</div>
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group table-responsive box-table-class">
 						<p:dataTable id="lstInfectious" var="inf"
 							value="#{freelanceController.listaFreelance}" paginator="true"
 							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
-							rows="10" styleClass="table table-bordered"
+							rows="10" styleClass="borderless"
 							emptyMessage="No existen registros" rowIndexVar="item"
-							style="margin-bottom:0">
+							style="margin-bottom:0; border-style: none">
 
-							<p:column headerText="Id" sortBy="#{inf.id}">
+							<p:column headerText="Id" sortBy="#{inf.id}"
+								style="width:64px;text-align: right">
 								<h:outputText value="#{inf.id}" />
 							</p:column>
 
-							<p:column headerText="Nombre" sortBy="#{inf.dsc}">
-								<h:outputText value="#{inf.nombre}" />
+							<p:column headerText="Nombre" sortBy="#{inf.name}" style="width:320px;text-align: left">
+								<h:outputText value="#{inf.name} #{inf.lname}" />
 							</p:column>
-							<p:column headerText="Descripción" sortBy="#{inf.dsc}">
-								<h:outputText value="#{inf.dsc}" />
-							</p:column>
-							<p:column headerText="Correo" sortBy="#{inf.correo}">
-								<h:outputText value="#{inf.correo}" />
-							</p:column>
+
 							<p:column headerText="Cumplimiento" sortBy="#{inf.cumplimiento}">
 								<h:outputText value="#{inf.cumplimiento}" />
 							</p:column>
 
 							<p:column headerText="Operación">
-								<h:commandLink action="LstFreelance" value="Eliminar"
+								<h:commandLink action="LstFreelance" value="[X]"
 									actionListener="#{freelanceController.delete(inf.id)}"
 									style="color:red" />
-
-								<br />
 								<h:commandLink action="#{freelanceController.modFreelance(inf)}"
-									value="Modificar" style="color:blue" />
-								<br />
-								<h:commandLink action="null"
-									value="Services" style="color:green" />
+									value="[Modify]" style="color:blue" />
+								<h:commandLink action="null" value="[Service]"
+									style="color:green" />
 							</p:column>
 
 						</p:dataTable>

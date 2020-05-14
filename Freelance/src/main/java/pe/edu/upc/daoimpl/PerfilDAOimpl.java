@@ -18,12 +18,14 @@ import pe.edu.upc.entity.Perfil;
 public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 
 	@Override
 	public Integer insert(Perfil t) throws Exception {
 		em.persist(t);
+		System.out.println("entidad generada con ID: " + String.valueOf(t.getId()));
 		return t.getId();
 	}
 
@@ -44,7 +46,7 @@ public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 	public List<Perfil> list() throws Exception {
 		List<Perfil> profiles = new ArrayList<Perfil>();
 
-		Query q = em.createQuery("SELECT c FROM Customer c");
+		Query q = em.createQuery("SELECT c FROM Perfil c");
 		profiles = (List<Perfil>) q.getResultList();
 		return profiles;
 	}

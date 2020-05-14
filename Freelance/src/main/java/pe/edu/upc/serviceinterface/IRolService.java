@@ -20,6 +20,8 @@ public interface IRolService {
 
 	Integer assignRolesToUser(Usuario user, List<Rol> roles) throws Exception;
 
+	Integer deassignRolesToUser(int user) throws Exception;
+	
 	List<UsuarioRol> findUserRolesByUser(Usuario user) throws Exception;
 
 }

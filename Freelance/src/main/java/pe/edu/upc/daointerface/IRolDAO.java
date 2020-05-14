@@ -20,6 +20,8 @@ public interface IRolDAO {
 	Optional<Rol> findById(Rol rol) throws Exception;
 
 	Integer insertUserRole(List<UsuarioRol> userRoles) throws Exception;
-
+	
+	Integer removeUserRoles(int user) throws Exception;
+	
 	List<UsuarioRol> findUserRolesByUser(Usuario user) throws Exception;
 }

@@ -6,8 +6,8 @@
 	<persistence-unit name="FreelanceProject"
 		transaction-type="JTA">
 		<jta-data-source>java:/freelanceDS</jta-data-source>
-		<class>pe.edu.upc.entity.Freelance</class>
-		<class>pe.edu.upc.entity.Cliente</class>
+		<class>pe.edu.upc.entity.PerfilFreelance</class>
+		<class>pe.edu.upc.entity.PerfilCliente</class>
 		<class>pe.edu.upc.entity.Usuario</class>
 		<class>pe.edu.upc.entity.Perfil</class>
 		<class>pe.edu.upc.entity.Rol</class>

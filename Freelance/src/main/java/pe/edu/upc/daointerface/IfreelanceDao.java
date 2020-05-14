@@ -2,14 +2,14 @@ package pe.edu.upc.daointerface;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Freelance;
+import pe.edu.upc.entity.PerfilFreelance;
 
 public interface IfreelanceDao {
-	public void insertar(Freelance f);
+	public void insertar(PerfilFreelance f);
 	
-	public List<Freelance> listar();
+	public List<PerfilFreelance> listar();
 	
 	public void delete(int f);
 	
-	public void modify(Freelance f);
+	public void modify(PerfilFreelance f);
 }

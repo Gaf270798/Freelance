@@ -9,7 +9,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pe.edu.upc.entity.Freelance;
+import pe.edu.upc.entity.PerfilFreelance;
+import pe.edu.upc.serviceinterface.IPerfilService;
+import pe.edu.upc.serviceinterface.IRolService;
 import pe.edu.upc.serviceinterface.IfreelanceService;
 
 @Named
@@ -20,26 +22,29 @@ public class FreelanceController implements Serializable {
 
 	@Inject
 	private IfreelanceService iservice;
+	@Inject
+	private IPerfilService pservice;
+	@Inject
+	private IRolService rservice;
 	
-	private Freelance f;
+	private PerfilFreelance f;
 
-	List<Freelance>listaFreelance;
+	List<PerfilFreelance>listaFreelance;
 
-	//AHORA REGRESO, DISCULPE 10 sec
 	@PostConstruct
 	public void init() {
-		this.listaFreelance = new ArrayList<Freelance>();
-		this.f = new Freelance();
+		this.listaFreelance = new ArrayList<PerfilFreelance>();
+		this.f = new PerfilFreelance();
 		this.listFreelance();
 	}
+	
 	public String newFreelance() {
-		this.setF(new Freelance());
+		this.setF(new PerfilFreelance());
 		return "freelance.xhtml";
 	}
 	
 	public void insert() {
 		try {
-			
 			iservice.insert(f);
 			cleanFreelance();
 			this.listFreelance();
@@ -61,38 +66,50 @@ public class FreelanceController implements Serializable {
 	}
 	
 	public void delete(int df) {
-		System.out.println(String.valueOf(df));
+		System.out.println("intentar eliminar roles");
+		try {
+			rservice.deassignRolesToUser(df);
+			System.out.println("roles eliminados");
+		} catch (Exception e) {
+			System.out.println("no es posible quitar roles");
+			e.getMessage();
+		}
+
+		System.out.println("eliminar Freelance");
 		iservice.delete(df);
 		this.listFreelance();
 	}
 	
-	public String modFreelance(Freelance fa) {
+	public String modFreelance(PerfilFreelance fa) {
+		
+		System.out.println("update try");
+		System.out.println(fa.toString());
 		this.setF(fa);
-		return "FreelanceUpdate.xhtml";
+		
+		return "freelanceUpdate.xhtml";
 	}
 	
 	public void modify() {
-		iservice.modify(f);
-		cleanFreelance();
-		listFreelance();
+		try {
+			iservice.modify(f);
+			cleanFreelance();
+			listFreelance();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
-	public IfreelanceService getIservice() {
-		return iservice;
-	}
-	public void setIservice(IfreelanceService iservice) {
-		this.iservice = iservice;
-	}
-	public Freelance getF() {
+	public PerfilFreelance getF() {
 		return f;
 	}
-	public void setF(Freelance f) {
+	public void setF(PerfilFreelance f) {
+		System.out.print(f.toString());
 		this.f = f;
 	}
-	public List<Freelance> getListaFreelance() {
+	public List<PerfilFreelance> getListaFreelance() {
 		return listaFreelance;
 	}
-	public void setListaFreelance(List<Freelance> listaFreelance) {
+	public void setListaFreelance(List<PerfilFreelance> listaFreelance) {
 		this.listaFreelance = listaFreelance;
 	}
 	public static long getSerialversionuid() {

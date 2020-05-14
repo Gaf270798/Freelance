@@ -75,4 +75,10 @@ public class RolServiceImpl implements IRolService, Serializable {
 		return rD.findUserRolesByUser(user);
 	}
 
+	@Override
+	public Integer deassignRolesToUser(int user) throws Exception {
+		rD.removeUserRoles(user);
+		return 1;
+	}
+
 }

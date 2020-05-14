@@ -7,7 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.entity.PerfilCliente;
 import pe.edu.upc.serviceinterface.IclienteService;
 
 @Named
@@ -19,13 +19,13 @@ public class ClienteServiceImpl implements IclienteService, Serializable {
     private IclienteService iD;
 
     @Override
-    public void insert(Cliente i) {
+    public void insert(PerfilCliente i) {
         iD.insert(i);
 
     }
 
     @Override
-    public List<Cliente> list() {
+    public List<PerfilCliente> list() {
         return iD.list();
     }
     

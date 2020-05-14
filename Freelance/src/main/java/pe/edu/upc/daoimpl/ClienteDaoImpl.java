@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IclienteDao;
-import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.entity.PerfilCliente;
 
 public class ClienteDaoImpl implements IclienteDao, Serializable {
 
@@ -21,7 +21,7 @@ public class ClienteDaoImpl implements IclienteDao, Serializable {
 
     @Transactional
     @Override
-    public void insert(Cliente i) {
+    public void insert(PerfilCliente i) {
         try {
             em.persist(i);
         } catch (Exception e) {
@@ -32,11 +32,11 @@ public class ClienteDaoImpl implements IclienteDao, Serializable {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Cliente> list() {
-        List<Cliente> lista = new ArrayList<Cliente>();
+    public List<PerfilCliente> list() {
+        List<PerfilCliente> lista = new ArrayList<PerfilCliente>();
         try {
-            Query q = em.createQuery("SELECT i FROM Cliente i");
-            lista = (List<Cliente>) q.getResultList();
+            Query q = em.createQuery("SELECT i FROM PerfilCliente i");
+            lista = (List<PerfilCliente>) q.getResultList();
         } catch (Exception e) {
             System.out.println("Error en DAO Ilist ClienteImpl");
         }

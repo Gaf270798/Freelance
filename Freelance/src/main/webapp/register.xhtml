@@ -20,69 +20,93 @@
 				width="15%"></h:graphicImage>
 			<br />
 		</center>
-		<div align="center">
+		<div align="center" style="margin: auto; width: 600px">
 
 			<f:facet name="header">Registrar Usuario</f:facet>
-			<h:panelGrid id="pg" columns="2">
-				<p:outputLabel for="txtName" value="Nombres" />
-				<p:inputText id="txtName"
-					value="#{registerController.customer.name}" required="true"
-					styleClass="form-control" />
-				<h:column />
+			<div style="border-style: solid; margin: auto; padding: 10px">
+				<h4 style="margin: 0px 0px 10px 40px; text-align: left">Perfil</h4>
+				<h:panelGrid id="pg" columns="2">
+					<p:outputLabel for="txtName" value="Nombres" style="width:300px" />
+					<p:inputText id="txtName"
+						value="#{registerController.customer.name}" required="true"
+						styleClass="form-control" style="width:220px" />
 
-				<p:outputLabel for="txtAddress" value="Dirección" />
-				<p:inputText id="txtAddress"
-					value="#{registerController.customer.address}" counter="display"
-					rows="5" cols="30" maxlength="250"
-					counterTemplate="{0} caracteres restantes." autoResize="false"
-					required="true" styleClass="form-control" />
-				<h:message for="txtAddress" display="text" />
-				<h:column />
+					<p:outputLabel for="txtlName" value="Apellidos" />
+					<p:inputText id="txtlName"
+						value="#{registerController.customer.lname}" required="true"
+						styleClass="form-control" style="width:220px" />
 
-				<p:outputLabel for="txtDni" value="Dni" />
-				<p:inputText id="txtDni" value="#{registerController.customer.dni}"
-					counter="display" rows="5" cols="30" maxlength="250"
-					counterTemplate="{0} caracteres restantes." autoResize="false"
-					required="true" styleClass="form-control" />
-				<h:message for="txtDni" display="text" />
-				<h:column />
+					<p:outputLabel for="txtAddress" value="Dirección" />
+					<p:inputText id="txtAddress"
+						value="#{registerController.customer.address}" counter="display"
+						rows="5" cols="30" maxlength="250"
+						counterTemplate="{0} caracteres restantes." autoResize="false"
+						required="true" styleClass="form-control" />
+					<h:message for="txtAddress" display="text" />
+					<h:column />
+					
+					<p:outputLabel for="txtEmail" value="Correo" />
+					<p:inputText id="txtEmail"
+						value="#{registerController.customer.email}" required="true"
+						styleClass="form-control" style="width:220px" />
+						
+					<p:outputLabel for="txtDni" value="Dni" />
+					<p:inputText id="txtDni" value="#{registerController.customer.dni}"
+						counter="display" rows="5" cols="30" maxlength="8"
+						counterTemplate="{0} caracteres restantes." autoResize="false"
+						required="true" styleClass="form-control" />
+					<h:message for="txtDni" display="text" />
+					<h:column />
 
-				<h:column />
-				<h:outputText id="display" />
-				<h:column />
-				<h:column />
+					<h:column />
+					<h:outputText id="display" />
 
-				<p:outputLabel for="txtUser" value="Usuario" />
-				<p:inputText id="txtUser"
-					value="#{registerController.user.username}" required="true"
-					styleClass="form-control" />
-				<p:message for="txtUser" display="text" />
-				<h:column />
+				</h:panelGrid>
+			</div>
+			<br />
+			<div style="border-style: solid; margin: auto; padding: 10px">
+				<h4 style="margin: 0px 0px 10px 40px; text-align: left">Usuario</h4>
+				<h:panelGrid id="pg2" columns="2">
 
-				<p:outputLabel for="txtPassword1" value="Contraseña :" />
-				<p:password id="txtPassword1"
-					value="#{registerController.user.password}" match="txtPassword2"
-					label="Password 1" required="true"
-					validatorMessage="Contraseñas no coinciden"
-					styleClass="form-control" />
-				<p:message for="txtPassword1" display="text" />
-				<h:column />
+					<p:outputLabel for="txtUser" value="Usuario:" style="width:300px" />
+					<p:inputText id="txtUser"
+						value="#{registerController.user.username}" required="true"
+						styleClass="form-control" style="width:220px" />
+					<p:message for="txtUser" display="text" />
+					<h:column />
 
-				<p:outputLabel for="txtPassword2"
-					value="Escriba nuevamente su contraseña:" />
-				<p:password id="txtPassword2"
-					value="#{registerController.user.password}" label="Password 2"
-					required="true" styleClass="form-control" />
-				<h:column />
-				<h:column />
+					<p:outputLabel for="txtPassword1" value="Contraseña:" />
+					<p:password id="txtPassword1"
+						value="#{registerController.user.password}" match="txtPassword2"
+						label="Password 1" required="true"
+						validatorMessage="Contraseñas no coinciden"
+						styleClass="form-control" />
+					<p:message for="txtPassword1" display="text" />
+					<h:column />
 
-			</h:panelGrid>
+					<p:outputLabel for="txtPassword2" value="Repita Contraseña:" />
+					<p:password id="txtPassword2"
+						value="#{registerController.user.password}" label="Password 2"
+						required="true" styleClass="form-control" />
+					<h:column />
+					<h:column />
 
-			<p:commandButton value="Inicio" action="login?faces-redirect=true"
-				immediate="true" styleClass="btn btn-primary" />
-			<p:commandButton value="Registrar"
-				action="#{registerController.registerUser()}"
-				styleClass="btn btn-primary" />
+				</h:panelGrid>
+			</div>
+			<br></br>
+			<p:commandButton value="registrarse como Freelancer"
+				action="#{registerController.registerFreelance()}"
+				styleClass="btn btn-primary"
+				style="white-space: normal;background:#88ee88;width:200px;Height:60px;align:center;margin:0px 10px 10px 10px" />
+
+			<p:commandButton value="registrarse como Cliente"
+				action="#{registerController.registerCliente()}"
+				styleClass="btn btn-primary"
+				style="white-space: normal;background:#8888ee;width:200px;Height:60px;align:center;margin:0px 10px 10px 10px" />
+			<br />
+			<p:commandButton value="Cancelar" action="login?faces-redirect=true"
+				immediate="true" styleClass="btn btn-primary"
+				style="background:#ee8888;width:300px;Height:40px;margin:0px 10px 10px 10px" />
 		</div>
 	</h:form>
 

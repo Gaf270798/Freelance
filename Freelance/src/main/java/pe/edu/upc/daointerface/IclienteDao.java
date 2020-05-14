@@ -2,9 +2,9 @@ package pe.edu.upc.daointerface;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Cliente;
+import pe.edu.upc.entity.PerfilCliente;
 
 public interface IclienteDao {
-    public void insert(Cliente i);
-    public List<Cliente> list();
+    public void insert(PerfilCliente i);
+    public List<PerfilCliente> list();
 }

@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IRolDAO;
 import pe.edu.upc.entity.Rol;
@@ -106,6 +107,23 @@ public class RolDAOimpl implements IRolDAO, Serializable {
 		}
 
 		return userRoles;
+	}
+
+	@Transactional
+	@Override
+	public Integer removeUserRoles(int user) throws Exception {
+		int deletedCount = 0;
+		try {
+			System.out.println("query tries remove: " + String.valueOf(user));
+			Query query = em.createQuery(
+			      "DELETE FROM UsuarioRol c WHERE c.usuario.id = ?1");
+			 deletedCount = query.setParameter(1, user).executeUpdate();
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return deletedCount;
+
 	}
 
 }

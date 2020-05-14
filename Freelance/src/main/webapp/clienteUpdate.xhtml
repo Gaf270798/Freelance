@@ -9,7 +9,7 @@
 <ui:composition template="master.xhtml">
 
 	<ui:define name="title">
-        .:Registro de Freelancer:.
+        .:Registro de Cliente:.
     </ui:define>
 
 	<ui:define name="titleCont">
@@ -27,64 +27,51 @@
 
 				<p:inputText autocomplete="off" id="id" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.id}" required="true" readonly="#{freelanceController.readonly}" />
+					value="#{clienteController.i.id}" required="true" readonly="#{clienteController.readonly}" />
 
 				<h:outputLabel for="nombre" value="Freelancer "
 					styleClass="control-label" />
 
 				<p:inputText autocomplete="off" id="name" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.name}" maxlength="30"
+					value="#{clienteController.i.name}" maxlength="30"
 					required="true" />
 				<p:inputText autocomplete="off" id="lname" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.lname}" maxlength="30"
+					value="#{clienteController.i.lname}" maxlength="30"
 					required="true" />
 
 				<h:outputLabel for="dni" value="dni "
 					styleClass="control-label" />
 				<p:inputText autocomplete="off" id="dni" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.dni}" maxlength="8"
+					value="#{clienteController.i.dni}" maxlength="8"
 					required="true" />
 					
 				<h:outputLabel for="correo" value="correo electronico "
 					styleClass="control-label" />
 				<p:inputText autocomplete="off" id="mail" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.email}" maxlength="50"
+					value="#{clienteController.i.email}" maxlength="50"
 					required="true" />
 
 				<h:outputLabel for="dirección" value="dirección"
 					styleClass="control-label" />
 				<p:inputText autocomplete="off" id="address"
 					styleClass="form-control" style="margin: 0px 0px 10px 0px"
-					value="#{freelanceController.f.address}" maxlength="50"
+					value="#{clienteController.i.address}" maxlength="50"
 					required="true" />
-			</div>
-			<br />
-			<div
-				style="border-style: solid; border-width: 2px; border-color: #15eb7c; margin: auto; padding: 10px 20px 0px 40px">
-				<h4
-					style="width: 130px; margin: -20px 0px 10px -20px; text-align: center; background: white; color: #15eb7c;">Freelance
-					Data</h4>
-
-				<h:outputLabel for="id" value="cumplimiento"
-					styleClass="control-label" />
-				<p:inputText autocomplete="off" id="cumplimiento"
-					style="margin: 0px 0px 10px 0px" styleClass="form-control"
-					value="#{freelanceController.f.cumplimiento}" required="true" />
 			</div>
 			<br />
 
 			<p:commandButton value="Grabar"
-				actionListener="#{freelanceController.modify()}"
+				actionListener="#{clienteController.modify()}"
 				styleClass="btn btn-primary " update="@form"
 				style="margin: 0px 10px 0px 0px; background:#8888ee"
-				action="listFreelance?faces-redirect=true" />
+				action="listCliente?faces-redirect=true" />
 
 			<p:commandButton value="Cancelar"
-				action="listFreelance?faces-redirect=true" immediate="true"
+				action="listCliente?faces-redirect=true" immediate="true"
 				styleClass="btn btn-default" ajax="false" />
 
 			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />

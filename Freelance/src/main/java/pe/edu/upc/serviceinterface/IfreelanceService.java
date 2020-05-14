@@ -9,7 +9,7 @@ public interface IfreelanceService {
 
 	public List<PerfilFreelance> list();
 	
-	public void delete(int f);
+	public void delete(int f) throws Exception;
 	
 	public void modify(PerfilFreelance f);
 }

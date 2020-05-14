@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.PerfilFreelance;
-import pe.edu.upc.serviceinterface.IPerfilService;
 import pe.edu.upc.serviceinterface.IRolService;
 import pe.edu.upc.serviceinterface.IfreelanceService;
 
@@ -23,10 +22,9 @@ public class FreelanceController implements Serializable {
 	@Inject
 	private IfreelanceService iservice;
 	@Inject
-	private IPerfilService pservice;
-	@Inject
 	private IRolService rservice;
 	
+	private boolean readonly;
 	private PerfilFreelance f;
 
 	List<PerfilFreelance>listaFreelance;
@@ -36,21 +34,7 @@ public class FreelanceController implements Serializable {
 		this.listaFreelance = new ArrayList<PerfilFreelance>();
 		this.f = new PerfilFreelance();
 		this.listFreelance();
-	}
-	
-	public String newFreelance() {
-		this.setF(new PerfilFreelance());
-		return "freelance.xhtml";
-	}
-	
-	public void insert() {
-		try {
-			iservice.insert(f);
-			cleanFreelance();
-			this.listFreelance();
-		} catch (Exception e) {
-			e.getMessage();
-		}
+		this.readonly = false;
 	}
 
 	public void listFreelance() {
@@ -65,6 +49,25 @@ public class FreelanceController implements Serializable {
 		this.init();
 	}
 	
+	public String modFreelance(PerfilFreelance fa) {
+		System.out.println(fa.toString());
+		this.setF(fa);
+		readonly = true;
+		
+		return "freelanceUpdate.xhtml";
+	}
+
+	public void modify() {
+		try {
+			readonly = false;
+			iservice.modify(f);
+			cleanFreelance();
+			listFreelance();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	public void delete(int df) {
 		System.out.println("intentar eliminar roles");
 		try {
@@ -74,31 +77,18 @@ public class FreelanceController implements Serializable {
 			System.out.println("no es posible quitar roles");
 			e.getMessage();
 		}
-
-		System.out.println("eliminar Freelance");
-		iservice.delete(df);
+		try {
+			System.out.println("eliminar Freelance");
+			iservice.delete(df);
+		} catch (Exception e) {
+			System.out.println("no es posible eliminar");
+			e.getMessage();
+		}
+		
 		this.listFreelance();
 	}
 	
-	public String modFreelance(PerfilFreelance fa) {
-		
-		System.out.println("update try");
-		System.out.println(fa.toString());
-		this.setF(fa);
-		
-		return "freelanceUpdate.xhtml";
-	}
-	
-	public void modify() {
-		try {
-			iservice.modify(f);
-			cleanFreelance();
-			listFreelance();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-	
+	//getters y setters
 	public PerfilFreelance getF() {
 		return f;
 	}
@@ -109,11 +99,8 @@ public class FreelanceController implements Serializable {
 	public List<PerfilFreelance> getListaFreelance() {
 		return listaFreelance;
 	}
-	public void setListaFreelance(List<PerfilFreelance> listaFreelance) {
-		this.listaFreelance = listaFreelance;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public boolean isReadonly() {
+		return readonly;
 	}
 	
 	

@@ -10,7 +10,7 @@ public interface IPerfilService {
 
 	Integer update(Perfil customer) throws Exception;
 
-	Integer delete(Perfil customer) throws Exception;
+	Integer delete(int customer) throws Exception;
 
 	List<Perfil> list() throws Exception;
 

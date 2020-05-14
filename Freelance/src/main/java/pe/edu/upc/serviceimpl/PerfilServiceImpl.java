@@ -34,7 +34,7 @@ public class PerfilServiceImpl implements IPerfilService, Serializable {
 
 	@Transactional
 	@Override
-	public Integer delete(Perfil t) throws Exception {
+	public Integer delete(int t) throws Exception {
 		return cD.delete(t);
 	}
 

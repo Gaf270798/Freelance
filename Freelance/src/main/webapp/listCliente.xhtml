@@ -6,18 +6,18 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="master.xhtml">
 	<ui:define name="title">
-        .:Listado de Freelancers:.
+        .:Listado de Clientess:.
     </ui:define>
 	<ui:define name="titleCont">
-		<span>Freelance </span>
+		<span>Clientes </span>
 	</ui:define>
 	<ui:define name="content">
 		<h:form>
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group table-responsive box-table-class">
-						<p:dataTable id="lstInfectious" var="inf"
-							value="#{freelanceController.listaFreelance}" paginator="true"
+						<p:dataTable id="lstCliente" var="inf"
+							value="#{clienteController.listaCliente}" paginator="true"
 							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
 							rows="10" styleClass="borderless"
 							emptyMessage="No existen registros" rowIndexVar="item"
@@ -28,22 +28,16 @@
 								<h:outputText value="#{inf.id}" />
 							</p:column>
 
-							<p:column headerText="Nombre" sortBy="#{inf.name}" style="width:320px;text-align: left">
+							<p:column headerText="Nombre" sortBy="#{inf.name}" style="text-align: left">
 								<h:outputText value="#{inf.name} #{inf.lname}" />
 							</p:column>
 
-							<p:column headerText="Cumplimiento" sortBy="#{inf.cumplimiento}">
-								<h:outputText value="#{inf.cumplimiento}" />
-							</p:column>
-
 							<p:column headerText="Operación" style="width:120px">
-								<h:commandLink action="LstFreelance" value="[X]"
-									actionListener="#{freelanceController.delete(inf.id)}"
+								<h:commandLink action="LstCliente" value="[X]"
+									actionListener="#{clienteController.delete(inf.id)}"
 									style="color:red" />
-								<h:commandLink action="#{freelanceController.modFreelance(inf)}"
+								<h:commandLink action="#{clienteController.modCliente(inf)}"
 									value="[Modify]" style="color:blue" />
-								<h:commandLink action="null" value="[Service]"
-									style="color:green" />
 							</p:column>
 
 						</p:dataTable>

@@ -10,9 +10,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IPerfilDAO;
 import pe.edu.upc.entity.Perfil;
+import pe.edu.upc.entity.PerfilCliente;
+import pe.edu.upc.entity.PerfilFreelance;
 
 @Named
 public class PerfilDAOimpl implements IPerfilDAO, Serializable {
@@ -22,6 +25,7 @@ public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 
+	@Transactional
 	@Override
 	public Integer insert(Perfil t) throws Exception {
 		em.persist(t);
@@ -29,15 +33,24 @@ public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 		return t.getId();
 	}
 
+	@Transactional
 	@Override
 	public Integer update(Perfil t) throws Exception {
 		em.merge(t);
 		return t.getId();
 	}
 
+	@Transactional
 	@Override
-	public Integer delete(Perfil t) throws Exception {
-		em.remove(t);
+	public Integer delete(int t) throws Exception {
+		Perfil mot = new Perfil();
+		try {
+			mot = em.getReference(Perfil.class, t);
+			em.remove(mot);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return 1;
 	}
 
@@ -48,6 +61,36 @@ public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 
 		Query q = em.createQuery("SELECT c FROM Perfil c");
 		profiles = (List<Perfil>) q.getResultList();
+		return profiles;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PerfilCliente> listCliente(){
+		List<PerfilCliente> profiles = new ArrayList<PerfilCliente>();
+		
+		try {
+			Query q = em.createQuery("SELECT c FROM Perfil c where ptype = 'C'");
+			profiles = (List<PerfilCliente>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return profiles;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PerfilFreelance> listFreelance(){
+		List<PerfilFreelance> profiles = new ArrayList<PerfilFreelance>();
+		
+		try {
+			Query q = em.createQuery("SELECT c FROM Perfil c where ptype = 'F'");
+			profiles = (List<PerfilFreelance>) q.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		return profiles;
 	}
 

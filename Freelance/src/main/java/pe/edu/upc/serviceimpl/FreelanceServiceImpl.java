@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.daointerface.IPerfilDAO;
-import pe.edu.upc.daointerface.IfreelanceDao;
 import pe.edu.upc.entity.PerfilFreelance;
 import pe.edu.upc.serviceinterface.IfreelanceService;
 
@@ -18,32 +17,31 @@ public class FreelanceServiceImpl implements IfreelanceService, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private IfreelanceDao iD;
-
+	private IPerfilDAO pD;
+	
 	@Override
 	public void insert(PerfilFreelance f) {
-		try {
+		/*try {
 			iD.insertar(f);
 		} catch (Exception e) {
 			System.out.println("Error en el service al insertar un freelance");
-		}	
+		}	*/
 	}
 
 	@Override
 	public List<PerfilFreelance> list() {
-		return iD.listar();
+		return pD.listFreelance();
 	}
 
 	@Override
-	public void delete(int f) {
-		iD.delete(f);
-		
+	public void delete(int f) throws Exception {
+		pD.delete(f);
 	}
 
 	@Override
 	public void modify(PerfilFreelance f) {
-		try {
-			iD.modify(f);
+		try {	
+			pD.update(f);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

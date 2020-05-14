@@ -1,21 +1,13 @@
 package pe.edu.upc.daoimpl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IfreelanceDao;
-import pe.edu.upc.entity.PerfilFreelance;
 
 public class FreelanceDaoImpl implements IfreelanceDao, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext(unitName = "FreelanceProject")
+/*	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 
 	@Transactional
@@ -74,5 +66,5 @@ public class FreelanceDaoImpl implements IfreelanceDao, Serializable {
 		}
 
 	}
-
+*/
 }

@@ -81,8 +81,11 @@ public class MasterController implements Serializable {
 		return true;
 	}
 	
-	public void cerrarSesion() {
+	public String cerrarSesion() {
+		System.out.println("sesión cerrada");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		
+		return "login.xhtml";
 	}
 	public int getProfile() {
 		FacesContext context = FacesContext.getCurrentInstance();

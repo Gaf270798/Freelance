@@ -43,29 +43,29 @@
 	</nav>
 	<!--main-->
 	<div class="container base_fondo_fff"
-		style="min-height: 600px; border-radius: 4px; margin-top: 35px;">
+		style="min-height: 600px; border-radius: 4px; margin-top: 64px;">
 		<div class="row">
 			<!--left-->
 			<div class="col-md-3" id="leftCol">
 				<ul class="nav nav-stacked" id="sidebar">
-					<li id="sidebar-1"><a href="panel.xhtml"><i
-							class="icon-home"></i> Inicio</a></li>
-					<li id="sidebar-2"><a href="listFreelance.xhtml"><i
-							class="icon-user"></i> Freelance</a></li>
-					<li id="sidebar-2"><a href="listCliente.xhtml"><i
-							class="icon-user"></i> Cliente</a></li>
+					<li id="sidebar-1" style="border-style: solid"><a
+						href="panel.xhtml"><i class="icon-home"></i> Inicio</a></li>
+					<li id="sidebar-2" style="border-style: solid"><a
+						href="listFreelance.xhtml"><i class="icon-user"></i> Freelance</a></li>
+					<li id="sidebar-3" style="border-style: solid"><a
+						href="listCliente.xhtml"><i class="icon-user"></i> Cliente</a></li>
 
-					<li id="sidebar-3"><a href="perfil.xhtml"><i
-							class="icon-user"></i> Perfil</a></li>
-							
-					<li id="sidebar-6"><p:link value="Cerrar Sesión"
-							actionListener="#{masterController.cerrarSesion()}"
-							href="login.xhtml" /></li>
+					<li id="sidebar-4" style="border-style: solid"><p:commandLink
+							action="#{perfilPageController.goToProfile(masterController.profile)}">
+							<i class="icon-user"></i>Perfil</p:commandLink></li>
+
+					<li id="sidebar-6" style="border-style: solid"><p:commandLink
+							action="#{masterController.cerrarSesion()}">
+							<i class="icon-user"></i>Cerrar Sesión</p:commandLink></li>
 
 				</ul>
 			</div>
 			<!--/left-->
-
 			<!--right-->
 			<div class="col-md-9" style="padding-right: 30px">
 				<h2 id="sec0" class="title-style">
@@ -80,7 +80,7 @@
 		<!--/row-->
 	</div>
 	<h:form>
-		<div class="row" align="center"
+		<div class="row" align="center" hidden="true"
 			style="margin-top: 15px; margin-bottom: 15px;">
 			<p:commandButton value="Nada" action="master?faces-redirect=true"
 				styleClass="btn btn-primary" ajax="false" />

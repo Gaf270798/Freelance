@@ -16,7 +16,7 @@ public interface IPerfilDAO {
 
 	List<Perfil> list() throws Exception;
 
-	Optional<Perfil> findById(Perfil perfil) throws Exception;
+	Optional<Perfil> findById(int perfil) throws Exception;
 
 	List<Perfil> findByName(String perfil) throws Exception;
 

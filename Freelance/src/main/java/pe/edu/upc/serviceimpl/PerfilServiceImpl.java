@@ -44,7 +44,7 @@ public class PerfilServiceImpl implements IPerfilService, Serializable {
 	}
 	//SPECIALDATOSHIT
 	@Override
-	public Optional<Perfil> getOne(Perfil t) throws Exception {
+	public Optional<Perfil> getOne(int t) throws Exception {
 		return cD.findById(t);
 	}
 

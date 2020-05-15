@@ -31,10 +31,12 @@ public class FreelanceController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("freelance init");
 		this.listaFreelance = new ArrayList<PerfilFreelance>();
 		this.f = new PerfilFreelance();
 		this.listFreelance();
 		this.readonly = false;
+		//System.out.println(f.toString());
 	}
 
 	public void listFreelance() {

@@ -20,11 +20,17 @@
 				width="15%"></h:graphicImage>
 			<br />
 		</center>
+		
 		<div align="center" style="margin: auto; width: 600px">
 
 			<f:facet name="header">Registrar Usuario</f:facet>
-			<div style="border-style: solid; margin: auto; padding: 10px">
-				<h4 style="margin: 0px 0px 10px 40px; text-align: left">Perfil</h4>
+
+
+			<div
+				style="border-style: solid; border-width: 2px; border-color: #888888; margin: auto; padding: 10px 20px 0px 40px">
+				<h4
+					style="width: 50px; margin: -26px 0px 20px -20px; text-align: center; background: white; color: #888888;">Perfil</h4>
+
 				<h:panelGrid id="pg" columns="2">
 					<p:outputLabel for="txtName" value="Nombres" style="width:300px" />
 					<p:inputText id="txtName"
@@ -44,12 +50,12 @@
 						required="true" styleClass="form-control" />
 					<h:message for="txtAddress" display="text" />
 					<h:column />
-					
+
 					<p:outputLabel for="txtEmail" value="Correo" />
 					<p:inputText id="txtEmail"
 						value="#{registerController.customer.email}" required="true"
 						styleClass="form-control" style="width:220px" />
-						
+
 					<p:outputLabel for="txtDni" value="Dni" />
 					<p:inputText id="txtDni" value="#{registerController.customer.dni}"
 						counter="display" rows="5" cols="30" maxlength="8"
@@ -64,8 +70,11 @@
 				</h:panelGrid>
 			</div>
 			<br />
-			<div style="border-style: solid; margin: auto; padding: 10px">
-				<h4 style="margin: 0px 0px 10px 40px; text-align: left">Usuario</h4>
+			<div
+				style="border-style: solid; border-width: 2px; border-color: #888888; margin: auto; padding: 10px 20px 0px 40px">
+				<h4
+					style="width: 80px; margin: -26px 0px 20px -20px; text-align: center; background: white; color: #888888;">Usuario</h4>
+
 				<h:panelGrid id="pg2" columns="2">
 
 					<p:outputLabel for="txtUser" value="Usuario:" style="width:300px" />
@@ -88,10 +97,8 @@
 					<p:password id="txtPassword2"
 						value="#{registerController.user.password}" label="Password 2"
 						required="true" styleClass="form-control" />
-					<h:column />
-					<h:column />
-
 				</h:panelGrid>
+				<br />
 			</div>
 			<br></br>
 			<p:commandButton value="registrarse como Freelancer"

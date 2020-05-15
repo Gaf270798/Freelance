@@ -1,6 +1,5 @@
 package pe.edu.upc.controller;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class MasterController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private IRolService rS;
-
+	
 	public void verificarSesion() {
 		try {
 			System.out.println("verificando sesión");
@@ -85,4 +84,11 @@ public class MasterController implements Serializable {
 	public void cerrarSesion() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
+	public int getProfile() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("user");
+		
+		return us.getId();
+	}
+	
 }

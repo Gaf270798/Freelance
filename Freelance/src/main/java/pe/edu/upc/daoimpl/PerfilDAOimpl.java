@@ -98,16 +98,18 @@ public class PerfilDAOimpl implements IPerfilDAO, Serializable {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Optional<Perfil> findById(Perfil t) throws Exception {
-
+	public Optional<Perfil> findById(int t) throws Exception {
+		System.out.println(t);
 		Perfil customerFound = new Perfil();
 
 		List<Perfil> customers = new ArrayList<Perfil>();
 		Query q = em.createQuery("FROM Perfil c where c.id = ?1");
-		q.setParameter(1, t.getId());
+		q.setParameter(1, t);
 
 		customers = (List<Perfil>) q.getResultList();
 
+		System.out.println("N° de resultados: " + String.valueOf(customers.size()));
+		
 		if (customers != null && !customers.isEmpty()) {
 			customerFound = customers.get(0);
 		}

@@ -14,7 +14,7 @@ public interface IPerfilService {
 
 	List<Perfil> list() throws Exception;
 
-	Optional<Perfil> getOne(Perfil customer) throws Exception;
+	Optional<Perfil> getOne(int customer) throws Exception;
 
 	List<Perfil> findCustomerByName(String name) throws Exception;
 

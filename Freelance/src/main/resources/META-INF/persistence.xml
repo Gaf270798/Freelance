@@ -12,6 +12,9 @@
 		<class>pe.edu.upc.entity.Perfil</class>
 		<class>pe.edu.upc.entity.Rol</class>
 		<class>pe.edu.upc.entity.UsuarioRol</class>
+		<class>pe.edu.upc.entity.Especialidad</class>
+		<class>pe.edu.upc.entity.EspFreelance</class>
+		
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"

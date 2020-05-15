@@ -42,8 +42,9 @@
 									style="color:red" />
 								<h:commandLink action="#{freelanceController.modFreelance(inf)}"
 									value="[Modify]" style="color:blue" />
-								<h:commandLink action="null" value="[Service]"
-									style="color:green" />
+									
+								<h:commandLink action="#{perfilPageController.goToProfile(inf.id)}"
+									value="[Profile]" style="color:green" />
 							</p:column>
 
 						</p:dataTable>

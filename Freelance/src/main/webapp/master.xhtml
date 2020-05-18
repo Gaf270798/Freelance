@@ -5,13 +5,13 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta charset="utf-8" />
 	<title><ui:insert name="title"></ui:insert></title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximum-scale=1" />
-
 	<link
 		href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Ubuntu+Condensed'
 		rel='stylesheet' type='text/css' />
@@ -22,6 +22,8 @@
 	<h:outputStylesheet name="css/main_base.css" />
 	<h:outputStylesheet name="css/font_ico.css" />
 	<ui:insert name="headCont"></ui:insert>
+	<f:event listener="#{masterController.verificarSesion()}"
+		type="preRenderView" />
 </h:head>
 <h:body>
 	<nav class="navbar navbar-default navbar-fixed-top base_primary"
@@ -48,21 +50,21 @@
 			<!--left-->
 			<div class="col-md-3" id="leftCol">
 				<ul class="nav nav-stacked" id="sidebar">
-					<li id="sidebar-1" style="border-style: solid"><a
-						href="panel.xhtml"><i class="icon-home"></i> Inicio</a></li>
-					<li id="sidebar-2" style="border-style: solid"><a
-						href="listFreelance.xhtml"><i class="icon-user"></i> Freelance</a></li>
-					<li id="sidebar-3" style="border-style: solid"><a
-						href="listCliente.xhtml"><i class="icon-user"></i> Cliente</a></li>
+					<li id="sidebar-1"><a href="panel.xhtml"><i
+							class="icon-home"></i> Inicio</a></li>
+					<li id="sidebar-2"><a href="listFreelance.xhtml"><i
+							class="icon-user"></i> Freelance</a></li>
+					<li id="sidebar-3"><a href="listCliente.xhtml"><i
+							class="icon-user"></i> Cliente</a></li>
 
-					<li id="sidebar-4" style="border-style: solid"><p:commandLink
+					<li id="sidebar-4"><p:commandLink
 							action="#{perfilPageController.goToProfile(masterController.profile)}">
 							<i class="icon-user"></i>Perfil</p:commandLink></li>
 
-					<li id="sidebar-6" style="border-style: solid"><p:commandLink
-							action="#{masterController.cerrarSesion()}">
+					<li id="sidebar-5"><p:commandLink action="/login.xhtml"
+							immediate="true"
+							actionListener="#{masterController.cerrarSesion()}">
 							<i class="icon-user"></i>Cerrar Sesión</p:commandLink></li>
-
 				</ul>
 			</div>
 			<!--/left-->

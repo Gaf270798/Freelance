@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.Perfil;
-import pe.edu.upc.entity.PerfilFreelance;
 import pe.edu.upc.entity.PerfilCliente;
+import pe.edu.upc.entity.PerfilFreelance;
 import pe.edu.upc.serviceinterface.IPerfilService;
 
 @Named
@@ -22,6 +22,10 @@ public class PerfilPageController implements Serializable {
     private IPerfilService pS;
     
 	private Perfil profile;
+	private PerfilFreelance fprofile;
+	private PerfilCliente cprofile;
+	
+	private Perfil nullprofile;
 	
 	@PostConstruct
 	public void init() {
@@ -35,18 +39,27 @@ public class PerfilPageController implements Serializable {
 			System.out.println("perfil consultado: " + String.valueOf(profile_id));
 			this.profile = pS.getOne(profile_id).get();
 			
+			if (this.profile instanceof PerfilFreelance) {
+				this.fprofile = (PerfilFreelance)this.profile;
+				this.cprofile = new PerfilCliente();
+			}else 	if (this.profile instanceof PerfilCliente) {
+				this.fprofile = new PerfilFreelance();
+				this.cprofile = (PerfilCliente)this.profile;
+			}
+			
 		} catch (Exception e) {
 		}
 		return "perfil.xhtml";
 	}
 
 	public String Bottom() {
+		System.out.println("profilecalled");
 		if( profile instanceof PerfilFreelance){
-			return "freelance";
+			return "f";
 		}else if( profile instanceof PerfilCliente){
-			return "cliente";
+			return "c";
 		}else
-			return "failed";
+			return "n";
 	}
 	
 	public Perfil getProfile() {
@@ -56,6 +69,18 @@ public class PerfilPageController implements Serializable {
 	public void setProfile(Perfil profile) {
 		this.profile = profile;
 	}
+
 	
-	
+	public PerfilFreelance getFprofile() {
+		return fprofile;
+	}
+
+
+	public PerfilCliente getCprofile() {
+		return cprofile;
+	}
+
+	public Perfil getNullprofile() {
+		return nullprofile;
+	}
 }

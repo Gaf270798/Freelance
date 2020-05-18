@@ -17,44 +17,51 @@
 
 	<ui:define name="content">
 		<h:form>
-			<div
-				style="border-style: solid; border-width: 2px; border-color: #8888ee; margin: auto; padding: 10px 20px 0px 40px">
-				<h4
-					style="width: 50px; margin: -20px 0px 10px -20px; text-align: center; background: white; color: #8888ee;">Perfil</h4>
 
-				<h:outputLabel for="id" value="Código" styleClass="control-label"/>
+			<style type="text/css">
+.infoGroup {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #8888ee;
+	margin: auto;
+	padding: 10px 20px 0px 40px;
+	display: block;
+}
+
+.infoHead {
+	float: left;
+	padding: 2px;
+	margin: -22px 0px 0px -20px;
+	text-align: center;
+	background: white;
+	color: #8888ee;
+	display: inline;
+}
+</style>
+			<div class="infoGroup">
+				<h4 class="infoHead">Datos</h4>
+				<br />
+				<h:outputLabel for="id" value="Código" styleClass="control-label" />
 
 				<p:inputText autocomplete="off" id="id" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{perfilPageController.profile.id}" required="true"/>
+					value="#{perfilPageController.profile.id}" required="true" />
 
-				<h:outputLabel for="nombre" value="Freelancer "
+				<h:outputLabel for="nombre" value="Nombre Completo "
 					styleClass="control-label" />
 
 				<p:inputText autocomplete="off" id="name" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
-					value="#{perfilPageController.profile.name}" maxlength="30"
-					required="true" />
-				<p:inputText autocomplete="off" id="lname" styleClass="form-control"
-					style="margin: 0px 0px 10px 0px"
-					value="#{perfilPageController.profile.lname}" maxlength="30"
-					required="true" />
+					value="#{perfilPageController.profile.name} #{perfilPageController.profile.lname}"
+					maxlength="30" required="true" />
 
-				<h:outputLabel for="dni" value="dni "
-					styleClass="control-label" />
+				<h:outputLabel for="dni" value="dni " styleClass="control-label" />
 				<p:inputText autocomplete="off" id="dni" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.dni}" maxlength="8"
 					required="true" />
-					
-				<h:outputLabel for="correo" value="correo electronico "
-					styleClass="control-label" />
-				<p:inputText autocomplete="off" id="mail" styleClass="form-control"
-					style="margin: 0px 0px 10px 0px"
-					value="#{perfilPageController.profile.email}" maxlength="50"
-					required="true" />
 
-				<h:outputLabel for="dirección" value="dirección"
+				<h:outputLabel for="address" value="dirección"
 					styleClass="control-label" />
 				<p:inputText autocomplete="off" id="address"
 					styleClass="form-control" style="margin: 0px 0px 10px 0px"
@@ -62,8 +69,56 @@
 					required="true" />
 			</div>
 			<br />
+			<div class="infoGroup">
+				<h4 class="infoHead">Contacto</h4>
+				<br />
+				<h:outputLabel for="mail" value="correo electronico "
+					styleClass="control-label" />
+				<p:inputText autocomplete="off" id="mail" styleClass="form-control"
+					style="margin: 0px 0px 10px 0px"
+					value="#{perfilPageController.profile.email}" maxlength="50"
+					required="true" />
+			</div>
+			<br />
 			<div>
-				<h:outputLabel value="#{perfilPageController.Bottom()}" />
+				<h:form id="pfreelance"
+					rendered="#{perfilPageController.Bottom()=='f'}">
+					<div class="infoGroup">
+						<h4 class="infoHead">Freelancer</h4>
+						<br />
+						<h:outputLabel for="cumplitud" value="Score:"
+							styleClass="control-label" />
+						<p:outputLabel autocomplete="off" id="cumplitud"
+							styleClass="form-control" style="margin: 0px 0px 10px 0px"
+							value="#{perfilPageController.fprofile.cumplimiento}"
+							maxlength="50" required="true" />
+					</div>
+
+				</h:form>
+				<h:form id="pcliente"
+					rendered="#{perfilPageController.Bottom()=='c'}">
+					<div class="infoGroup">
+
+						<h4 class="infoHead">Cliente</h4>
+						<p>you are in page of Client</p>
+					</div>
+				</h:form>
+
+				<script type="text/javascript">
+					var pf = document.getElementById("pfreelance");
+					var pc = document.getElementById("pcliente");*/
+
+					pf.style.display = "true";
+					pc.style.display = "true";
+					if ("#{perfilPageController.Bottom()}" == "c") {
+						pc.style.rendered="true";
+					} else if ("#{perfilPageController.Bottom()}" == "f") {
+						pf.style.rendered="true";
+					} else {
+						pf.style.rendered="true";
+						pc.style.rendered="true";
+					}
+				</script>
 			</div>
 		</h:form>
 	</ui:define>

@@ -28,7 +28,8 @@
 								<h:outputText value="#{inf.id}" />
 							</p:column>
 
-							<p:column headerText="Nombre" sortBy="#{inf.name}" style="text-align: left">
+							<p:column headerText="Nombre" sortBy="#{inf.name}"
+								style="text-align: left">
 								<h:outputText value="#{inf.name} #{inf.lname}" />
 							</p:column>
 
@@ -38,6 +39,9 @@
 									style="color:red" />
 								<h:commandLink action="#{clienteController.modCliente(inf)}"
 									value="[Modify]" style="color:blue" />
+								<h:commandLink
+									action="#{perfilPageController.goToProfile(inf.id)}"
+									value="[Profile]" style="color:green" />
 							</p:column>
 
 						</p:dataTable>

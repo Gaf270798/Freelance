@@ -59,7 +59,7 @@ public class MasterController implements Serializable {
 			rol = "ADMIN,USER";
 			break;
 		default:
-			rol = "ADMIN,USER";
+			rol = "ADMIN";
 			break;
 		}
 
@@ -85,7 +85,7 @@ public class MasterController implements Serializable {
 		System.out.println("sesión cerrada");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		
-		return "login.xhtml";
+		return "login.xhtml?redirect=true";
 	}
 	public int getProfile() {
 		FacesContext context = FacesContext.getCurrentInstance();

@@ -9,7 +9,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.upc.entity.Especialidad;
 import pe.edu.upc.entity.PerfilFreelance;
+import pe.edu.upc.serviceinterface.IEspecialidadService;
 import pe.edu.upc.serviceinterface.IRolService;
 import pe.edu.upc.serviceinterface.IfreelanceService;
 
@@ -23,12 +25,15 @@ public class FreelanceController implements Serializable {
 	private IfreelanceService iservice;
 	@Inject
 	private IRolService rservice;
+	@Inject
+	private IEspecialidadService eservice;
 	
 	private boolean readonly;
 	private PerfilFreelance f;
 
-	List<PerfilFreelance>listaFreelance;
-
+	private List<PerfilFreelance>listaFreelance;
+	private List<Especialidad> listaTag;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("freelance init");
@@ -54,6 +59,14 @@ public class FreelanceController implements Serializable {
 	public String modFreelance(PerfilFreelance fa) {
 		System.out.println(fa.toString());
 		this.setF(fa);
+		this.listaTag = new ArrayList<Especialidad>();
+		
+		try {
+			eservice.findEspByFreelance(fa).forEach(r ->{ this.listaTag.add(r.getTopic());});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		readonly = true;
 		
 		return "freelanceUpdate.xhtml";
@@ -103,6 +116,14 @@ public class FreelanceController implements Serializable {
 	}
 	public boolean isReadonly() {
 		return readonly;
+	}
+
+	public List<Especialidad> getListaTag() {
+		return listaTag;
+	}
+
+	public void setListaTag(List<Especialidad> listaTag) {
+		this.listaTag = listaTag;
 	}
 	
 	

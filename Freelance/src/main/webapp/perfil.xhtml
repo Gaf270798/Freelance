@@ -35,7 +35,25 @@
 	text-align: center;
 	background: white;
 	color: #8888ee;
-	display: inline;
+	display: block;
+}
+
+.mystyle {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	color: #39739d;
+	background-color: #e1ecf4;
+	border-color: transparent;
+	display: inline-block;
+	padding: .4em .5em;
+	margin: 2px 2px 2px 0;
+	font-size: 11px;
+	line-height: 1;
+	white-space: nowrap;
+	text-decoration: none;
+	text-align: center;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
 }
 </style>
 			<div class="infoGroup">
@@ -82,7 +100,7 @@
 			<br />
 			<div>
 				<h:form id="pfreelance"
-					rendered="#{perfilPageController.Bottom()=='f'}">
+					rendered="#{perfilPageController.renderKey == 'f'}">
 					<div class="infoGroup">
 						<h4 class="infoHead">Freelancer</h4>
 						<br />
@@ -90,13 +108,43 @@
 							styleClass="control-label" />
 						<p:outputLabel autocomplete="off" id="cumplitud"
 							styleClass="form-control" style="margin: 0px 0px 10px 0px"
-							value="#{perfilPageController.fprofile.cumplimiento}"
+							value="#{perfilPageController.profile.cumplimiento}"
 							maxlength="50" required="true" />
+						<br />
+						<div class="form-group table-responsive box-table-class" style="display: none">
+							<p:dataTable id="lstTags" var="inf"
+								value="#{perfilPageController.listaTag}" paginator="true"
+								paginatorPosition="top" rowsPerPageTemplate="5,10,20" rows="10"
+								styleClass="borderless" emptyMessage="No existen registros"
+								rowIndexVar="item" style="margin-bottom:0; border-style: none">
+
+								<p:column headerText="Id" sortBy="#{inf.id}"
+									style="width:64px;text-align: right">
+									<h:outputText value="#{inf.id}" />
+								</p:column>
+
+								<p:column headerText="Nombre" sortBy="#{inf.name}"
+									style="text-align: left">
+									<h:outputText value="#{inf.name}" />
+								</p:column>
+
+								<p:column headerText="Operación" style="width:120px">
+									<h:commandLink value="[X]" actionListener="#"
+										style="color:#ee8888" />
+									<h:commandLink actionListener="#" value="[O]"
+										style="color:#88ee88" />
+								</p:column>
+							</p:dataTable>
+						</div>
+						<h4 style="border-bottom: solid 2px; margin-top: -16px; margin-bottom: -2px; color: #888888">Tags:</h4>
+							<div id='displaytags'
+								style="display: inline; border: none; display: block !important; margin: 4px 4px"></div>
+						
 					</div>
 
 				</h:form>
 				<h:form id="pcliente"
-					rendered="#{perfilPageController.Bottom()=='c'}">
+					rendered="#{perfilPageController.renderKey == 'c'}">
 					<div class="infoGroup">
 
 						<h4 class="infoHead">Cliente</h4>
@@ -105,19 +153,19 @@
 				</h:form>
 
 				<script type="text/javascript">
-					var pf = document.getElementById("pfreelance");
-					var pc = document.getElementById("pcliente");*/
+					var dlist = document.getElementById('displaytags');
 
-					pf.style.display = "true";
-					pc.style.display = "true";
-					if ("#{perfilPageController.Bottom()}" == "c") {
-						pc.style.rendered="true";
-					} else if ("#{perfilPageController.Bottom()}" == "f") {
-						pf.style.rendered="true";
-					} else {
-						pf.style.rendered="true";
-						pc.style.rendered="true";
-					}
+					var tagArray = JSON
+							.parse('#{perfilPageController.tagsJSON()}');
+
+					tagArray.map(function(item) {
+						return item.name
+					}).forEach(function(r) {
+						var node = document.createElement("a");
+						node.innerHTML = r;
+						node.classList.add("mystyle");
+						dlist.append(node);
+					});
 				</script>
 			</div>
 		</h:form>

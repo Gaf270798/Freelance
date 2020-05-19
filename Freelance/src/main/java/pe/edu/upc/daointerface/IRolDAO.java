@@ -7,7 +7,6 @@ import pe.edu.upc.entity.Rol;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.UsuarioRol;
 
-
 public interface IRolDAO {
 	Integer insert(Rol rol) throws Exception;
 

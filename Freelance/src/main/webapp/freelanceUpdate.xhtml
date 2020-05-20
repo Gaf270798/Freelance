@@ -17,6 +17,28 @@
 	</ui:define>
 
 	<ui:define name="content">
+		<script type="text/javascript">
+			var showNewTag = true;
+		</script>
+		<style type="text/css">
+.infoGroup {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #8888ee;
+	margin: auto;
+	padding: 10px 20px 0px 40px;
+	display: block;
+}
+.infoHead {
+float: left;
+	padding: 2px;
+	margin: -16px 20px 20px 20px;
+	text-align: center;
+	background: white;
+	color: #8888ee;
+	display: inline-block;
+}
+</style>
 		<h:form>
 			<div
 				style="border-style: solid; border-width: 2px; border-color: #8888ee; margin: auto; padding: 10px 20px 0px 40px">
@@ -77,61 +99,75 @@
 			<br />
 			<div class="form-group table-responsive box-table-class"
 				style="display: block">
-				<p:dataTable id="lstTags" var="inf"
-					value="#{freelanceController.listaTag}" paginator="true"
-					paginatorPosition="bottom" rowsPerPageTemplate="5,10,20" rows="10"
-					styleClass="borderless" emptyMessage="No existen registros"
-					rowIndexVar="item" style="margin-bottom:0; border-style: none">
 
-					<p:column headerText="Id" sortBy="#{inf.id}"
-						style="width:64px;text-align: right">
-						<h:outputText value="#{inf.id}" />
-					</p:column>
-
-					<p:column headerText="Nombre" sortBy="#{inf.name}"
-						style="text-align: left">
-						<h:outputText value="#{inf.name}" />
-					</p:column>
-
-					<p:column headerText="Operación" style="width:120px">
-						<h:commandLink value="[X]" actionListener="#"
-							style="color:#ee8888" />
-						<h:commandLink actionListener="#" value="[O]"
-							style="color:#88ee88" />
-					</p:column>
-				</p:dataTable>
-
-				<p:dataGrid var="inf" value="#{freelanceController.listaTag}"
-					paginator="false" styleClass="borderless"
-					emptyMessage="No existen registros" rowIndexVar="item"
-					style="margin-bottom:0; border-style: none">
-					<f:facet name="header" value="TAGS" />
-
+				<p:dataGrid id="tagGrid" var="inf"
+					value="#{freelanceController.listaTag}"
+					emptyMessage="No existen registros" styleClass="borderless"
+					rowIndexVar="item" style="margin-bottom:0; border-style: none" columns="5">
+					<f:facet name="header">TAGS</f:facet>
 					<p:panel>
-						<div style="display: inline">
+						<p:panelGrid columns="3" style="display: flex; border: none">
 							<h:outputText value="#{inf.name}" style="width: 100%" />
-							<div style="width: 100px; border: solid; display: inline"
-								align="right">
-								<h:commandLink value="[X]" actionListener="#"
-									style="color:#ee8888; width: auto" />
-								<h:commandLink actionListener="#" value="[O]"
-									style="color:#88ee88; width: auto" />
-							</div>
-
-						</div>
+							<h:column />
+							<h:commandLink value="[X]"
+								action="#{freelanceController.deassignEsp(inf)}"
+								style="color:#ee8888; width: auto">
+								<f:ajax execute="tagGrid" render="@form" />
+							</h:commandLink>
+						</p:panelGrid>
 					</p:panel>
-
 				</p:dataGrid>
+
+				<div id="newTagBTN" style="padding: 2px" align="center">
+					<p:commandButton value="Nuevo" styleClass="btn btn-primary"
+						style="background:#8888ee" onclick="showAdd()" />
+				</div>
+				<div id="addTagBTN" style="padding: 4px; display: block; margin: 20px 0px 0px 0px;"
+					align="center" class="infoGroup">
+					<h4 class="infoHead" style=" width: 120px">list Of Tags</h4>
+					<div align="left" style="width: 50%; margin: 0px 0px 10px 0px">
+						<p:dataList id="tagList" var="inf"
+							value="#{especialidadController.listaEspecialidad}"
+							styleClass="borderless" type="definition">
+							<p:commandLink value="#{inf.name}"
+								action="#{freelanceController.assignEsp(inf)}" update="@form" />
+						</p:dataList>
+					</div>
+
+					<p:commandButton value="Cerrar" styleClass="btn btn-default"
+						onclick="showAdd()" />
+				</div>
+
+				<script type="text/javascript">
+					function showAdd() {
+						var dtoShow = document.getElementById("newTagBTN");
+						var dtoHide = document.getElementById("addTagBTN");
+
+						if (showNewTag == false) {
+							dtoShow.style.display = "none";
+							dtoHide.style.display = "block";
+						} else {
+							dtoShow.style.display = "block";
+							dtoHide.style.display = "none";
+						}
+
+						showNewTag = !showNewTag;
+					}
+
+					showAdd();
+
+				</script>
+
 			</div>
+
 			<p:commandButton value="Grabar"
 				actionListener="#{freelanceController.modify()}"
 				styleClass="btn btn-primary " update="@form"
 				style="margin: 0px 10px 0px 0px; background:#8888ee"
 				action="listFreelance?faces-redirect=true" />
-
-			<p:commandButton value="Cancelar"
-				action="listFreelance?faces-redirect=true" immediate="true"
-				styleClass="btn btn-default" ajax="false" />
+			<h:commandButton value="Cancelar"
+				action="listFreelance?faces-redirect=true"
+				styleClass="btn btn-default" />
 
 			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 

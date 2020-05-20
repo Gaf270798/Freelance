@@ -18,8 +18,10 @@ public interface IEspecialidadService {
 	
 	Integer assignEspToFreelance(PerfilFreelance user, List<Especialidad> roles) throws Exception;
 
-	Integer deassignEspToFreelance(int user) throws Exception;
+	Integer cleanEspToFreelance(int user) throws Exception;
 	
 	List<EspFreelance> findEspByFreelance(PerfilFreelance user) throws Exception;
+
+	Integer deassignEsp(PerfilFreelance f, Especialidad e);
 
 }

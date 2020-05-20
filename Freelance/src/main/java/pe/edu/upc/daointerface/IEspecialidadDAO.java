@@ -21,4 +21,6 @@ public interface IEspecialidadDAO {
 	List<EspFreelance> findEspPerfil(PerfilFreelance user) throws Exception;
 
 	Optional<Especialidad> findById(Especialidad t) throws Exception;
+
+	Integer deassignEsp(PerfilFreelance f, Especialidad e);
 }

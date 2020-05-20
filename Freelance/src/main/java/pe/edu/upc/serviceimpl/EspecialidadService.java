@@ -52,15 +52,19 @@ public class EspecialidadService implements IEspecialidadService, Serializable {
 	}
 
 	@Override
-	public Integer deassignEspToFreelance(int user) throws Exception {
+	public Integer cleanEspToFreelance(int user) throws Exception {
 		return eD.removeEspPerfil(user);
+	}
+	
+	@Override
+	public Integer deassignEsp(PerfilFreelance f, Especialidad e) {
+		return eD.deassignEsp(f,e);
 	}
 
 	@Override
 	public List<EspFreelance> findEspByFreelance(PerfilFreelance user) throws Exception {
 		return eD.findEspPerfil(user);
 	}
-
 	@Override
 	public Optional<Especialidad> getOne(Especialidad t) throws Exception {
 		return eD.findById(t);

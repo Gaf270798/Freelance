@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,7 +20,7 @@ import pe.edu.upc.serviceinterface.IEspecialidadService;
 import pe.edu.upc.serviceinterface.IPerfilService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class PerfilPageController implements Serializable {
 
 	static final long serialVersionUID = 1L;
@@ -52,19 +53,15 @@ public class PerfilPageController implements Serializable {
 			this.profile = pS.getOne(profile_id).get();
 			
 			if (this.profile instanceof PerfilFreelance) {
-				//this.fprofile = (PerfilFreelance)this.profile;
-				//this.cprofile = new PerfilCliente();
 				this.renderKey = 'f';
 				eS.findEspByFreelance((PerfilFreelance)profile).forEach(r ->{ this.listaTag.add(r.getTopic());});
 			}else 	if (this.profile instanceof PerfilCliente) {
-				//this.fprofile = new PerfilFreelance();
-				//this.cprofile = (PerfilCliente)this.profile;
 				this.renderKey = 'c';
 			}
 			
 		} catch (Exception e) {
 		}
-		return "perfil.xhtml";
+		return "perfil.xhtml?faces-redirect=true";
 	}
 
 	public Perfil getProfile() {

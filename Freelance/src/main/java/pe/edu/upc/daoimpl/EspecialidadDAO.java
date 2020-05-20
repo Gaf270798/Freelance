@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import pe.edu.upc.daointerface.IEspecialidadDAO;
 import pe.edu.upc.entity.EspFreelance;
@@ -23,12 +24,14 @@ public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
 	@PersistenceContext(unitName = "FreelanceProject")
 	private EntityManager em;
 
+	@Transactional
 	@Override
 	public Integer insert(Especialidad rol) throws Exception {
 		em.persist(rol);
 		return rol.getId();
 	}
 
+	@Transactional
 	@Override
 	public Integer delete(Especialidad rol) throws Exception {
 		em.remove(rol);
@@ -44,7 +47,7 @@ public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
 		roles = (List<Especialidad>) q.getResultList();
 		return roles;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Optional<Especialidad> findById(Especialidad t) throws Exception {
@@ -64,6 +67,7 @@ public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
 		return Optional.of(rol);
 	}
 
+	@Transactional
 	@Override
 	public Integer insertEspPerfil(List<EspFreelance> espinprofile) throws Exception {
 		try {
@@ -83,6 +87,7 @@ public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
 		return 1;
 	}
 
+	@Transactional
 	@Override
 	public Integer removeEspPerfil(int user) throws Exception {
 		int deletedCount = 0;
@@ -98,6 +103,24 @@ public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
 		return deletedCount;
 	}
 
+	@Transactional
+	@Override
+	public Integer deassignEsp(PerfilFreelance f, Especialidad e) {
+		int deletedCount = 0;
+		try {
+			Query query = em.createQuery(
+			      "DELETE FROM EspFreelance c WHERE c.freelance.id = ?1 and c.topic.id = ?2");
+			query.setParameter(1, f.getId());
+			query.setParameter(2, e.getId());
+			
+			 deletedCount = query.executeUpdate();
+		}
+		catch(Exception e1){
+			System.out.println(e1.getMessage());
+		}
+		return deletedCount;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EspFreelance> findEspPerfil(PerfilFreelance user) throws Exception {

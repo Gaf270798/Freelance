@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,7 +17,7 @@ import pe.edu.upc.serviceinterface.IRolService;
 import pe.edu.upc.serviceinterface.IfreelanceService;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class FreelanceController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,8 +38,10 @@ public class FreelanceController implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println("freelance init");
+		
 		this.listaFreelance = new ArrayList<PerfilFreelance>();
 		this.f = new PerfilFreelance();
+		listTags(f);
 		this.listFreelance();
 		this.readonly = false;
 		//System.out.println(f.toString());
@@ -60,18 +63,24 @@ public class FreelanceController implements Serializable {
 		System.out.println(fa.toString());
 		this.setF(fa);
 		this.listaTag = new ArrayList<Especialidad>();
+		listTags(fa);
+
+
+		readonly = true;
 		
+		return "freelanceUpdate.xhtml?faces-redirect=true";
+	}
+
+	private void listTags(PerfilFreelance fa) {
+		this.listaTag = new ArrayList<Especialidad>();
 		try {
 			eservice.findEspByFreelance(fa).forEach(r ->{ this.listaTag.add(r.getTopic());});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		readonly = true;
-		
-		return "freelanceUpdate.xhtml";
 	}
-
+	
 	public void modify() {
 		try {
 			readonly = false;
@@ -103,8 +112,28 @@ public class FreelanceController implements Serializable {
 		this.listFreelance();
 	}
 	
+	public void assignEsp(Especialidad esp) {
+		System.out.println("called insert esp");
+		List<Especialidad>templist = new ArrayList<Especialidad>();
+		try {
+			templist.add(esp);
+			eservice.assignEspToFreelance(f, templist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		listTags(f);
+	}
+	public void deassignEsp(Especialidad esp) {
+		System.out.println("called remove esp");
+		eservice.deassignEsp(f, esp);
+		listTags(f);
+	}
+	public void checkEsp() {
+		
+	}
+	
 	//getters y setters
-	public PerfilFreelance getF() {
+ 	public PerfilFreelance getF() {
 		return f;
 	}
 	public void setF(PerfilFreelance f) {
@@ -117,14 +146,11 @@ public class FreelanceController implements Serializable {
 	public boolean isReadonly() {
 		return readonly;
 	}
-
 	public List<Especialidad> getListaTag() {
 		return listaTag;
 	}
-
 	public void setListaTag(List<Especialidad> listaTag) {
 		this.listaTag = listaTag;
 	}
-	
 	
 }

@@ -112,11 +112,30 @@
 							maxlength="50" required="true" />
 						<br />
 
-						<h4 style="border-bottom: solid 2px; margin-top: -16px; margin-bottom: -2px; color: #888888">Tags:</h4>
-							<div id='displaytags'
-								style="display: inline; border: none; display: block !important; margin: 4px 4px"></div>
-						
+						<h4
+							style="border-bottom: solid 2px; margin-top: -16px; margin-bottom: -2px; color: #888888">Tags:</h4>
+						<div id="displaytags"
+							style="border: solid; display: block !important; margin: 4px 4px"></div>
+						<h4>bottom text</h4>
+
 					</div>
+					<script type="text/javascript">
+						var dlist = document.getElementById("displaytags");
+
+						var tagArray = JSON
+								.parse('#{perfilPageController.tagsJSON()}');
+
+						alert(tagArray);
+
+						tagArray.map(function(item) {
+							return item.name;
+						}).forEach(function(r) {
+							var node = document.createElement("a");
+							node.innerHTML = r;
+							node.classList.add("mystyle");
+							dlist.appendChild(node);
+						});
+					</script>
 
 				</h:form>
 				<h:form id="pcliente"
@@ -128,21 +147,7 @@
 					</div>
 				</h:form>
 
-				<script type="text/javascript">
-					var dlist = document.getElementById('displaytags');
 
-					var tagArray = JSON
-							.parse('#{perfilPageController.tagsJSON()}');
-
-					tagArray.map(function(item) {
-						return item.name
-					}).forEach(function(r) {
-						var node = document.createElement("a");
-						node.innerHTML = r;
-						node.classList.add("mystyle");
-						dlist.append(node);
-					});
-				</script>
 			</div>
 		</h:form>
 	</ui:define>

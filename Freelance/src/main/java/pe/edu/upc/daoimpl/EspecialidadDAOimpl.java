@@ -17,7 +17,7 @@ import pe.edu.upc.entity.Especialidad;
 import pe.edu.upc.entity.PerfilFreelance;
 
 @Named
-public class EspecialidadDAO implements IEspecialidadDAO, Serializable {
+public class EspecialidadDAOimpl implements IEspecialidadDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
 

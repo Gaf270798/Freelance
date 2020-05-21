@@ -14,6 +14,7 @@
 		<class>pe.edu.upc.entity.UsuarioRol</class>
 		<class>pe.edu.upc.entity.Especialidad</class>
 		<class>pe.edu.upc.entity.EspFreelance</class>
+		<class>pe.edu.upc.entity.Servicio</class>
 		
 		<properties>
 			<property

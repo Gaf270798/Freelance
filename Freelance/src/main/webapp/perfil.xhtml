@@ -61,27 +61,27 @@
 				<br />
 				<h:outputLabel for="id" value="Código" styleClass="control-label" />
 
-				<p:inputText autocomplete="off" id="id" styleClass="form-control"
+				<h:outputLabel autocomplete="off" id="id" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.id}" required="true" />
 
 				<h:outputLabel for="nombre" value="Nombre Completo "
 					styleClass="control-label" />
 
-				<p:inputText autocomplete="off" id="name" styleClass="form-control"
+				<h:outputLabel autocomplete="off" id="name" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.name} #{perfilPageController.profile.lname}"
 					maxlength="30" required="true" />
 
 				<h:outputLabel for="dni" value="dni " styleClass="control-label" />
-				<p:inputText autocomplete="off" id="dni" styleClass="form-control"
+				<h:outputLabel autocomplete="off" id="dni" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.dni}" maxlength="8"
 					required="true" />
 
 				<h:outputLabel for="address" value="dirección"
 					styleClass="control-label" />
-				<p:inputText autocomplete="off" id="address"
+				<h:outputLabel autocomplete="off" id="address"
 					styleClass="form-control" style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.address}" maxlength="50"
 					required="true" />
@@ -92,7 +92,7 @@
 				<br />
 				<h:outputLabel for="mail" value="correo electronico "
 					styleClass="control-label" />
-				<p:inputText autocomplete="off" id="mail" styleClass="form-control"
+				<h:outputLabel autocomplete="off" id="mail" styleClass="form-control"
 					style="margin: 0px 0px 10px 0px"
 					value="#{perfilPageController.profile.email}" maxlength="50"
 					required="true" />
@@ -124,8 +124,6 @@
 
 						var tagArray = JSON
 								.parse('#{perfilPageController.tagsJSON()}');
-
-						alert(tagArray);
 
 						tagArray.map(function(item) {
 							return item.name;

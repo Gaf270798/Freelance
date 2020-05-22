@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        .:Listado de Servicios:.
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Service list </span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstServ" var="inf" widgetVar="servTable"
+							value="#{servicioController.listaServicio}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="borderless"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0; border-style: none" lazy="false">
+
+							<p:column headerText="Id" style="width:64px; text-align: right">
+								<h:outputText value="#{inf.idservicio}" />
+							</p:column>
+							
+							<p:column headerText="Title">
+								<h:outputText value="#{inf.name}" />
+							</p:column>
+
+							<p:column headerText="Active"
+								style="width:64px;">
+								<h:outputText value="#{inf.active}"/>
+							</p:column>
+
+							<p:column headerText="Owner" filterMatchMode="exact"
+								filterBy="#{inf.owner.id}">
+								<f:facet name="filter">
+									<p:selectOneMenu style="width:100%; box-sizing: border-box;"
+										onchange="PF('servTable').filter()">
+										<f:selectItem itemLabel="Select One" itemValue="#{null}"
+											noSelectionOption="true" />
+										<f:selectItems value="#{servicioController.listaFreelance}"
+											var="free" itemValue="#{free.id}" itemLabel="#{free.name} #{free.lname}"/>
+									</p:selectOneMenu>
+								</f:facet>
+								<h:outputText value="#{inf.owner.name} #{inf.owner.lname}" />
+							</p:column>
+
+							<p:column headerText="Operación" style="width:120px">
+								<p:commandLink value="[X]" style="color:red" action="#{servicioController.remove(inf.idservicio)}" update="lstServ"/>
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
+

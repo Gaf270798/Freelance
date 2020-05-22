@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
+import com.google.gson.Gson;
+
 @Entity
 @Table(name="f_services")
 public class Servicio implements Serializable{
@@ -22,9 +24,31 @@ public class Servicio implements Serializable{
 	private int idservicio;
 	
 	@ManyToOne
-	@JoinColumn(name="freelance_id", nullable = false)
+	@JoinColumn(name="id", nullable = false)
 	private PerfilFreelance owner;
 	
+	@Column(name="name", length = 80, nullable = false)
+	private String name;
+	
+	@Column(name="sdesc", length = 200, nullable = false)
+	private String desc;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
 	@Column(name="is_active")
 	private boolean active;
 
@@ -63,4 +87,8 @@ public class Servicio implements Serializable{
 		this.active = active;
 	}
 		
+	@Override
+	public String toString() {
+		return new Gson().toJson(this);
+	}
 }
